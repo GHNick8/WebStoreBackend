@@ -1,8 +1,11 @@
 package com.example.store.entity;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,9 +32,14 @@ public class Order {
     @OneToMany(mappedBy="order", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<OrderItem> items = new ArrayList<>();
     
-    @Column(precision=10, scale=2) 
-    private BigDecimal total;
+    @Column(precision=10, scale=2, nullable=false) 
+    private BigDecimal total= BigDecimal.ZERO;
 
-    private String status;
+    @Column(nullable=false)
+    private String status = "PENDING";;
     
+    @CreationTimestamp 
+    @Column(updatable=false) 
+    private Instant createdAt;
+
 }
