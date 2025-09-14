@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,9 +41,17 @@ public class AuthController {
 
   @PostMapping("/login")
   public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest req) {
-    Authentication a = authManager.authenticate(new UsernamePasswordAuthenticationToken(req.email(), req.password()));
-    String token = jwt.generate(req.email(), a.getAuthorities());
-    return ResponseEntity.ok(new AuthResponse(token));
+      Authentication a = authManager.authenticate(
+          new UsernamePasswordAuthenticationToken(req.email(), req.password())
+      );
+
+      String token = jwt.generate(req.email(), a.getAuthorities());
+      String role = a.getAuthorities().stream()
+                    .findFirst()
+                    .map(GrantedAuthority::getAuthority)
+                    .orElse("USER");
+
+      return ResponseEntity.ok(new AuthResponse(token, role));
   }
-  
+    
 }
