@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.store.dto.ProductResponse;
 import com.example.store.entity.Product;
 import com.example.store.repository.ProductRepository;
 
@@ -24,7 +25,21 @@ public class ProductController {
   private final ProductRepository repo;
   public ProductController(ProductRepository repo){ this.repo = repo; }
 
-  @GetMapping public List<Product> all(){ return repo.findAll(); }
+  @GetMapping
+  public List<ProductResponse> getAll() {
+      return repo.findAll().stream()
+          .map(p -> new ProductResponse(
+              p.getId(),
+              p.getName(),
+              p.getDescription(),
+              p.getPrice(),
+              p.getOriginalPrice(),
+              p.isOnSale(),
+              p.getStock(),
+              p.getImageUrl()
+          ))
+          .toList();
+  }
 
   @GetMapping("/{id}")
   public ResponseEntity<Product> one(@PathVariable Long id){
@@ -48,5 +63,5 @@ public class ProductController {
     if (!repo.existsById(id)) return ResponseEntity.notFound().build();
     repo.deleteById(id); return ResponseEntity.noContent().build();
   }
-  
+
 }
