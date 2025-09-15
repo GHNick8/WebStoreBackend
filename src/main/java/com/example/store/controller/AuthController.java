@@ -51,7 +51,7 @@ public class AuthController {
                     .map(GrantedAuthority::getAuthority)
                     .orElse("USER");
 
-      return ResponseEntity.ok(new AuthResponse(token, role));
+      return ResponseEntity.ok(new AuthResponse(token, role, req.email()));
   }
     
 }
