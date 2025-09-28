@@ -1,11 +1,10 @@
-🛒 Web Store Demo (Angular + Spring Boot)
-
-This is a full-stack e-commerce demo project built with Angular (frontend) and Spring Boot (backend).
-It showcases a complete shopping experience: browsing products, adding to cart/wishlist, placing orders, and admin product management.
+# 🛒 Web Store Demo (Angular + Spring Boot)
+This is a full-stack e-commerce demo project built with Angular (frontend) and Spring Boot (backend). It showcases a complete shopping experience: browsing products, adding to cart/wishlist, placing orders, and admin product management.
 
 ⚠️ Note: This is a demo project — no real payments or transactions are processed.
 
-✨ Features
+## ✨ Features
+
 👤 Authentication & Accounts
 
 Register & login with JWT authentication
@@ -60,7 +59,7 @@ Dismissible top demo banner
 
 Custom theme colors ($orange, $light-blue, $light-orange)
 
-🖥️ Tech Stack
+## 🖥️ Tech Stack
 Frontend
 
 Angular 17 (standalone components)
@@ -81,7 +80,7 @@ Hibernate / JPA with MySQL
 
 REST API
 
-⚡ Getting Started
+## ⚡ Getting Started
 Backend (Spring Boot)
 
 Clone repo and open backend project.
@@ -91,7 +90,6 @@ Configure application.properties (MySQL, JWT secret).
 Run the backend:
 
 ./mvnw spring-boot:run
-
 
 API runs at http://localhost:8080/api
 
@@ -103,11 +101,9 @@ Install dependencies:
 
 npm install
 
-
 Run dev server:
 
 ng serve
-
 
 App runs at http://localhost:4200
 
@@ -127,18 +123,16 @@ App runs at http://localhost:4200
 
 ⚙️ Admin panel
 
-🚀 Roadmap / Possible Improvements
+## 🚀 Roadmap / Possible Improvements
+Implement full admin dashboard (categories, stock management)
 
- Implement full admin dashboard (categories, stock management)
+Add product reviews & ratings
 
- Add product reviews & ratings
+Email notifications (order confirmation)
 
- Email notifications (order confirmation)
+Real payment integration (Stripe/PayPal)
 
- Real payment integration (Stripe/PayPal)
+Docker setup for easy deployment
 
- Docker setup for easy deployment
-
-📜 License
-
+## 📜 License
 MIT License — free to use and adapt.
